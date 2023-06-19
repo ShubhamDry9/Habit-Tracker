@@ -57,7 +57,7 @@ app.get('/status/:habitId', async function(req, res) {
     try {
         let habitId = req.params.habitId;
         const last7days = new Date();
-        last7days.setDate(last7days.getDate() - 6);
+        last7days.setDate(last7days.getDate() - 7);
         let result = await Status.find({ habit: habitId, $and: [{ createdAt: { $lte: new Date() } }, { createdAt: { $gte: last7days } }] });
         let habit = await Habit.findOne({ _id: habitId });
 
